@@ -2,7 +2,7 @@
 
 Name:           smartmet-data-ecmwf
 Version:        17.10.18
-Release:        1%{?dist}.fmi
+Release:        2%{?dist}.fmi
 Summary:        SmartMet Data ECMWF
 Group:          System Environment/Base
 License:        MIT
@@ -42,11 +42,14 @@ EOF
 
 cat > %{buildroot}%{smartmetroot}/cnf/cron/cron.hourly/clean_data_ecmwf <<EOF
 #!/bin/sh
-# Clean GFS data
+# Clean ECMWF data
 cleaner -maxfiles 4 '_ecmwf_.*_surface.sqd' %{smartmetroot}/data/ecmwf
 cleaner -maxfiles 4 '_ecmwf_.*_pressure.sqd' %{smartmetroot}/data/ecmwf
 cleaner -maxfiles 4 '_ecmwf_.*_surface.sqd' %{smartmetroot}/editor/in
 cleaner -maxfiles 4 '_ecmwf_.*_pressure.sqd' %{smartmetroot}/editor/in
+
+# Clean incoming ECMWF data older than 1 day (1 * 24 * 60 = 1440 min)
+find /smartmet/data/incoming/ecmwf -type f -mmin +1440 -delete
 EOF
 
 cat > %{buildroot}%{smartmetroot}/run/data/ecmwf/cnf/ecmwf-surface.st <<EOF
