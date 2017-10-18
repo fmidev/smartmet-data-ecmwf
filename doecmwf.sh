@@ -149,7 +149,7 @@ gribtoqd -d -t -L 1 -c $CNF/ecmwf.conf -p "240,ECMWF Surface" $P_ARG \
 log "Post processing ${OUTNAME}_pressure.sqd"
 cp -f  $TMP/${OUTNAME}_pressure.sqd $TMP/${OUTNAME}_pressure.sqd.tmp
 log "Post processing ${OUTNAME}_surface.sqd"
-qdscript -a 354 $CNF/ecmwf.st < $TMP/${OUTNAME}_surface.sqd > $TMP/${OUTNAME}_surface.sqd.tmp
+qdscript -a 354 $CNF/ecmwf-surface.st < $TMP/${OUTNAME}_surface.sqd > $TMP/${OUTNAME}_surface.sqd.tmp
 
 #
 # Create querydata totalWind and WeatherAndCloudiness objects

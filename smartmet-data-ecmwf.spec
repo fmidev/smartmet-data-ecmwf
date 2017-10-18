@@ -2,7 +2,7 @@
 
 Name:           smartmet-data-ecmwf
 Version:        17.10.18
-Release:        2%{?dist}.fmi
+Release:        3%{?dist}.fmi
 Summary:        SmartMet Data ECMWF
 Group:          System Environment/Base
 License:        MIT
